@@ -1,27 +1,20 @@
-const express = require("express");
-const cors = require("cors");
+let ultimoPayload = {}; // Variável para armazenar o último payload recebido
 
-const app = express();
-const port = 3000;
+export default function handler(req, res) {
+  if (req.method === 'POST') {
+    // Salva os dados recebidos no POST
+    ultimoPayload = req.body;
+    console.log('Dados recebidos:', ultimoPayload);
 
-app.use(cors()); // Ativa o suporte a CORS para todas as origens
-app.use(express.json());
+    // Retorna uma mensagem de sucesso
+    return res.status(200).json({ message: 'Dados recebidos com sucesso!' });
+  }
 
-let ultimoPayload = {};
+  if (req.method === 'GET') {
+    // Retorna os últimos dados recebidos no POST
+    return res.status(200).json(ultimoPayload);
+  }
 
-// Endpoint para receber dados via POST
-app.post("/api/receber-dados", (req, res) => {
-  ultimoPayload = req.body;
-  console.log("Dados recebidos:", ultimoPayload);
-  res.status(200).json({ message: "Dados recebidos com sucesso!" });
-});
-
-// Endpoint para enviar dados via GET
-app.get("/api/receber-dados", (req, res) => {
-  res.status(200).json(ultimoPayload);
-});
-
-// Inicia o servidor
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
-});
+  // Retorna erro para métodos diferentes de POST e GET
+  res.status(405).json({ message: 'Método não permitido' });
+}
