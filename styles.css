@@ -1,0 +1,63 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  background-color: #0078d7;
+  color: white;
+  padding: 10px 0;
+
+  border: solid 1px gray;
+}
+
+.caldeira-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-radius: 15px;
+}
+
+div {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 500px;
+  background-color: white;
+}
+
+.ar-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ar-primario,
+.ar-secundario {
+  width: 45%;
+  background-color: #f9f9f9;
+}
+
+.grelhado,
+.fornalha,
+.saida-balao,
+.pós-queima,
+.multiciclone,
+.filtro-chamine,
+.exaustor,
+.agua-vapor {
+  text-align: left;
+}
+
+span {
+  font-weight: bold;
+  color: #333;
+}

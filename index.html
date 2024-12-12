@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atualização Automática</title>
+  </head>
+  <body>
+    <h1>Geriba Energy Arc</h1>
+
+    <div id="dados">Carregando dados...</div>
+
+    <script>
+      async function buscarDados() {
+        try {
+          const response = await fetch(
+            "http://localhost:3000/api/receber-dados",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Erro ao buscar os dados");
+          }
+
+          const dados = await response.json();
+
+          // Atualize o conteúdo da página com os dados recebidos
+          document.getElementById("dados").innerHTML = `
+          <p>Pressão: ${dados.pressao || "N/A"} bar</p>
+          <p>Vazão: ${dados.vazao || "N/A"} ton/h</p>
+        `;
+        } catch (error) {
+          document.getElementById(
+            "dados"
+          ).textContent = `Erro: ${error.message}`;
+        }
+      }
+
+      // Atualiza os dados a cada 5 segundos
+      setInterval(buscarDados, 5000);
+
+      // Chama a função ao carregar a página
+      document.addEventListener("DOMContentLoaded", buscarDados);
+    </script>
+  </body>
+</html>
