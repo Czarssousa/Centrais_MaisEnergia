@@ -6,11 +6,10 @@
   <title>Atualização Automática</title>
 </head>
 <style>
-  #dados, #geribamog, #geribavap {
+  #dados, #geribamog, #geribavap, #bluetree {
     color: gray;
     font-size: 12px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
   }
 
   #titulo {
@@ -27,11 +26,11 @@
     width: 200px;
     height: 150px;
     border-radius: 15px;
-    border-color:gray
+    border-color: gray;
   }
 
-    .central h1 {
-   text-align: center;
+  .central h1 {
+    text-align: center;
   }
 
   .container {
@@ -55,6 +54,11 @@
     <div class="central">
       <h1 id="titulo">Geriba Energy Vap Fpap</h1>
       <div id="geribavap">Carregando dados...</div>
+    </div>
+
+    <div class="central">
+      <h1 id="titulo">BlueTree</h1>
+      <div id="bluetree">Carregando dados...</div>
     </div>
   </div>
 
@@ -134,11 +138,37 @@
       }
     }
 
+    async function buscarDadosBlueTree() {
+      try {
+        const response = await fetch('https://centrais-mais-energia.vercel.app/api/bluetree', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os dados de BlueTree');
+        }
+
+        const dados = await response.json();
+
+        // Atualiza os dados de BlueTree
+        document.getElementById('bluetree').innerHTML = `
+          <p>Temperatura: ${dados.temperatura || 'N/A'} °C</p>
+          <p>TR: ${dados.tr || 'N/A'}</p>
+        `;
+      } catch (error) {
+        document.getElementById('bluetree').textContent = `Erro: ${error.message}`;
+      }
+    }
+
     // Atualiza os dados a cada 5 segundos
     setInterval(() => {
       buscarDadosArc();
       buscarDadosMog();
       buscarDadosVap();
+      buscarDadosBlueTree();
     }, 5000);
 
     // Chama as funções ao carregar a página
@@ -146,6 +176,7 @@
       buscarDadosArc();
       buscarDadosMog();
       buscarDadosVap();
+      buscarDadosBlueTree();
     });
   </script>
 </body>
