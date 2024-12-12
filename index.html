@@ -68,7 +68,7 @@
     </div>
 
     <div class="central">
-      <h1 id="titulo">Lapi</h1>
+      <h1 id="titulo">LAP I</h1>
       <div id="lapi">Carregando dados...</div>
     </div>
   </div>
@@ -186,7 +186,7 @@
         const dados = await response.json();
 
         document.getElementById('sgai').innerHTML = `
-          <p>Geração: ${dados.geracao || 'N/A'} MW</p>
+          <p>Geração: ${dados.geracao || 'N/A'} kW</p>
           <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
         `;
       } catch (error) {
@@ -210,7 +210,7 @@
         const dados = await response.json();
 
         document.getElementById('lapi').innerHTML = `
-       <p>Geração: ${dados.geracao || 'N/A'} MW</p>
+       <p>Geração: ${dados.geracao || 'N/A'} kW</p>
           <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
         `;
       } catch (error) {
