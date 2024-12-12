@@ -6,7 +6,7 @@
   <title>Atualização Automática</title>
 </head>
 <style>
-  #dados, #geribamog, #geribavap, #bluetree, #sgai, #lapi, #lapii, #divii {
+  #dados, #geribamog, #geribavap, #bluetree, #sgai, #sgaii, #sgaiii, #lapi, #lapii, #divii {
     color: gray;
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -67,6 +67,16 @@
       <div id="sgai">Carregando dados...</div>
     </div>
 
+      <div class="central">
+      <h1 id="titulo">SGA II</h1>
+      <div id="sgai">Carregando dados...</div>
+    </div>
+
+      <div class="central">
+      <h1 id="titulo">SGA III</h1>
+      <div id="sgai">Carregando dados...</div>
+    </div>
+    
     <div class="central">
       <h1 id="titulo">LAP I</h1>
       <div id="lapi">Carregando dados...</div>
@@ -205,6 +215,54 @@
       }
     }
 
+     async function buscarDadosSgaii() {
+      try {
+        const response = await fetch('https://centrais-mais-energia.vercel.app/api/sgaii', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os dados de SGA II');
+        }
+
+        const dados = await response.json();
+
+        document.getElementById('sgaii').innerHTML = `
+          <p>Geração: ${dados.geracao || 'N/A'} kW</p>
+          <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
+        `;
+      } catch (error) {
+        document.getElementById('sgaii').textContent = `Erro: ${error.message}`;
+      }
+    }
+
+     async function buscarDadosSgaiii() {
+      try {
+        const response = await fetch('https://centrais-mais-energia.vercel.app/api/sgaiii', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os dados de SGA III');
+        }
+
+        const dados = await response.json();
+
+        document.getElementById('sgaiii').innerHTML = `
+          <p>Geração: ${dados.geracao || 'N/A'} kW</p>
+          <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
+        `;
+      } catch (error) {
+        document.getElementById('sgaiii').textContent = `Erro: ${error.message}`;
+      }
+    }
+
     async function buscarDadosLapi() {
       try {
         const response = await fetch('https://centrais-mais-energia.vercel.app/api/lapi', {
@@ -284,7 +342,9 @@
       buscarDadosVap();
       buscarDadosBlueTree();
       buscarDadosSgai();
-      buscarDadosLapi();
+        buscarDadosSgaii()
+        buscarDadosSgaiii()
+       buscarDadosLapi();
       buscarDadosLapii();
        buscarDadosdivii();
     }, 5000);
@@ -296,6 +356,8 @@
       buscarDadosVap();
       buscarDadosBlueTree();
       buscarDadosSgai();
+         buscarDadosSgaii();
+         buscarDadosSgaiii();
       buscarDadosLapi();
       buscarDadosLapii();
        buscarDadosdivii();
