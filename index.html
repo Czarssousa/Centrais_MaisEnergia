@@ -6,11 +6,11 @@
   <title>Atualização Automática</title>
 </head>
 <style>
-  #dados, #geribamog, #geribavap, #bluetree {
+  #dados, #geribamog, #geribavap, #bluetree, #sgai {
     color: gray;
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     text-align: Left;
+    text-align: left;
   }
 
   #titulo {
@@ -60,6 +60,11 @@
     <div class="central">
       <h1 id="titulo">BlueTree</h1>
       <div id="bluetree">Carregando dados...</div>
+    </div>
+
+    <div class="central">
+      <h1 id="titulo">SGA I</h1>
+      <div id="sgai">Carregando dados...</div>
     </div>
   </div>
 
@@ -164,12 +169,38 @@
       }
     }
 
+    async function buscarDadosSgai() {
+      try {
+        const response = await fetch('https://centrais-mais-energia.vercel.app/api/sgai', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os dados de SGA I');
+        }
+
+        const dados = await response.json();
+
+        // Atualiza os dados de SGA I
+        document.getElementById('sgai').innerHTML = `
+          <p>Geração: ${dados.geracao || 'N/A'} MW</p>
+          <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
+        `;
+      } catch (error) {
+        document.getElementById('sgai').textContent = `Erro: ${error.message}`;
+      }
+    }
+
     // Atualiza os dados a cada 5 segundos
     setInterval(() => {
       buscarDadosArc();
       buscarDadosMog();
       buscarDadosVap();
       buscarDadosBlueTree();
+      buscarDadosSgai();
     }, 5000);
 
     // Chama as funções ao carregar a página
@@ -178,6 +209,7 @@
       buscarDadosMog();
       buscarDadosVap();
       buscarDadosBlueTree();
+      buscarDadosSgai();
     });
   </script>
 </body>
