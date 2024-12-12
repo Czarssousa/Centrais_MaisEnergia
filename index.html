@@ -6,7 +6,7 @@
   <title>Atualização Automática</title>
 </head>
 <style>
-  #dados, #geribamog, #geribavap, #bluetree, #sgai {
+  #dados, #geribamog, #geribavap, #bluetree, #sgai, #lapi {
     color: gray;
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -66,6 +66,11 @@
       <h1 id="titulo">SGA I</h1>
       <div id="sgai">Carregando dados...</div>
     </div>
+
+    <div class="central">
+      <h1 id="titulo">Lapi</h1>
+      <div id="lapi">Carregando dados...</div>
+    </div>
   </div>
 
   <script>
@@ -84,7 +89,6 @@
 
         const dados = await response.json();
 
-        // Atualiza os dados de Geriba Energy Arc
         document.getElementById('dados').innerHTML = `
           <p>Pressão: ${dados.pressao || 'N/A'} bar</p>
           <p>Vazão: ${dados.vazao || 'N/A'} ton/h</p>
@@ -109,7 +113,6 @@
 
         const dados = await response.json();
 
-        // Atualiza os dados de Geriba Energy Mog
         document.getElementById('geribamog').innerHTML = `
           <p>Pressão: ${dados.pressao || 'N/A'} bar</p>
           <p>Vazão: ${dados.vazao || 'N/A'} ton/h</p>
@@ -134,7 +137,6 @@
 
         const dados = await response.json();
 
-        // Atualiza os dados de Geriba Energy Vap Fpap
         document.getElementById('geribavap').innerHTML = `
           <p>Pressão: ${dados.pressao || 'N/A'} bar</p>
           <p>Vazão: ${dados.vazao || 'N/A'} ton/h</p>
@@ -159,7 +161,6 @@
 
         const dados = await response.json();
 
-        // Atualiza os dados de BlueTree
         document.getElementById('bluetree').innerHTML = `
           <p>Temperatura: ${dados.temperatura || 'N/A'} °C</p>
           <p>TR: ${dados.tr || 'N/A'}</p>
@@ -184,13 +185,36 @@
 
         const dados = await response.json();
 
-        // Atualiza os dados de SGA I
         document.getElementById('sgai').innerHTML = `
           <p>Geração: ${dados.geracao || 'N/A'} MW</p>
           <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
         `;
       } catch (error) {
         document.getElementById('sgai').textContent = `Erro: ${error.message}`;
+      }
+    }
+
+    async function buscarDadosLapi() {
+      try {
+        const response = await fetch('https://centrais-mais-energia.vercel.app/api/lapi', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Erro ao buscar os dados de Lapi');
+        }
+
+        const dados = await response.json();
+
+        document.getElementById('lapi').innerHTML = `
+       <p>Geração: ${dados.geracao || 'N/A'} MW</p>
+          <p>Irradiação: ${dados.irradiacao || 'N/A'} kW/m²</p>
+        `;
+      } catch (error) {
+        document.getElementById('lapi').textContent = `Erro: ${error.message}`;
       }
     }
 
@@ -201,6 +225,7 @@
       buscarDadosVap();
       buscarDadosBlueTree();
       buscarDadosSgai();
+      buscarDadosLapi();
     }, 5000);
 
     // Chama as funções ao carregar a página
@@ -210,6 +235,7 @@
       buscarDadosVap();
       buscarDadosBlueTree();
       buscarDadosSgai();
+      buscarDadosLapi();
     });
   </script>
 </body>
