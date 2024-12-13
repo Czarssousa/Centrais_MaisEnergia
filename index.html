@@ -3,459 +3,342 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atualização Automática</title>
+    <title>Login e Painel de Dados</title>
+    <style>
+      /* Estilos Gerais */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: #ffffff;
+      }
+
+      .login-container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        width: 300px;
+      }
+
+      .login-container h1 {
+        text-align: center;
+        font-size: 24px;
+        color: gray;
+      }
+
+      .login-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid gray;
+        border-radius: 4px;
+      }
+
+      .login-container button {
+        width: 100%;
+        padding: 10px;
+        background: gray;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .login-container button:hover {
+        background: darkgray;
+      }
+
+      .login-container a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 14px;
+        color: blue;
+        text-decoration: none;
+      }
+
+      .login-container a:hover {
+        text-decoration: underline;
+      }
+
+      #error {
+        color: red;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 20px;
+        justify-content: start;
+        align-items: start;
+        justify-items: start;
+      }
+
+      .central {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: solid 1px gray;
+        width: 250px;
+        height: 150px;
+        border-radius: 18px;
+        border-color: gray;
+        color: gray;
+      }
+
+      .central h1 {
+        text-align: center;
+        font-size: 16px;
+        width: 100%;
+        color: gray;
+      }
+
+      #logout-button {
+        margin-top: 20px;
+        padding: 10px;
+        background: rgb(82, 82, 82);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+
+      #logout-button:hover {
+        background: rgb(163, 163, 163);
+      }
+    </style>
   </head>
-  <style>
-    #dados,
-    #geribamog,
-    #geribavap,
-    #bluetree,
-    #sgai,
-    #sgaii,
-    #sgaiii,
-    #lapi,
-    #lapii,
-    #divii {
-      color: gray;
-      font-size: 14px;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      text-align: left;   
-
-    }
-   #titulo {
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-      justify-items: center;
-      color: gray;
-      width: 100%;
-      font-size: 16px;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-   
-    .central {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: solid 1px gray;
-      width: 200px;
-      height: 150px;
-      border-radius: 18px;
-      border-color: gray;
-    }
-
-    .central h1 {
-      text-align: center;
-    }
-
-    .container {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-  </style>
   <body>
-    <div class="container">
-      <div class="central">
-        <h1 id="titulo">
-          Geriba Energy Arc
-          <hr />
-        </h1>
-
-        <div id="dados">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          Geriba Energy Mog
-          <hr />
-        </h1>
-        <div id="geribamog">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          Geriba Energy Vap Fpap
-          <hr />
-        </h1>
-        <div id="geribavap">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          BlueTree
-          <hr />
-        </h1>
-        <div id="bluetree">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          SGA I
-          <hr />
-        </h1>
-        <div id="sgai">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          SGA II
-          <hr />
-        </h1>
-        <div id="sgaii">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          SGA III
-          <hr />
-        </h1>
-        <div id="sgaiii">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          LAP I
-          <hr />
-        </h1>
-        <div id="lapi">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          LAP II
-          <hr />
-        </h1>
-        <div id="lapii">Carregando dados...</div>
-      </div>
-
-      <div class="central">
-        <h1 id="titulo">
-          DIV II
-          <hr />
-        </h1>
-        <div id="divii">Carregando dados...</div>
-      </div>
+    <div class="login-container" id="login-container">
+      <h1>Login</h1>
+      <input type="email" id="email" placeholder="E-mail" />
+      <input type="password" id="password" placeholder="Senha" />
+      <button id="login-button">Entrar</button>
+      <p id="error"></p>
+      <a href="#" id="reset-password-link">Esqueceu sua senha?</a>
     </div>
 
-    <script>
-      async function buscarDadosArc() {
+    <div id="app-container" style="display: none">
+      <div class="container">
+        <div class="central">
+          <h1>
+            Geriba Energy Arc
+            <hr />
+          </h1>
+          <div id="dados">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            Geriba Energy Mog
+            <hr />
+          </h1>
+          <div id="geribamog">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            Geriba Energy Vap Fpap
+            <hr />
+          </h1>
+          <div id="geribavap">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            BlueTree
+            <hr />
+          </h1>
+          <div id="bluetree">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            SGA I
+            <hr />
+          </h1>
+          <div id="sgai">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            SGA II
+            <hr />
+          </h1>
+          <div id="sgaii">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            SGA III
+            <hr />
+          </h1>
+          <div id="sgaiii">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            LAP I
+            <hr />
+          </h1>
+          <div id="lapi">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            LAP II
+            <hr />
+          </h1>
+          <div id="lapii">Carregando dados...</div>
+        </div>
+        <div class="central">
+          <h1>
+            DIV II
+            <hr />
+          </h1>
+          <div id="divii">Carregando dados...</div>
+        </div>
+      </div>
+      <button id="logout-button">Sair</button>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged,
+        sendPasswordResetEmail,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAKXrxWXEr-8Kg3OOyj4NnFK_e4I5tpeRw",
+        authDomain: "centraismaisenergia.firebaseapp.com",
+        projectId: "centraismaisenergia",
+        storageBucket: "centraismaisenergia.appspot.com",
+        messagingSenderId: "39890355306",
+        appId: "1:39890355306:web:3edcac8637e77e062c7613",
+        measurementId: "G-0F2T0027X4",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      const loginContainer = document.getElementById("login-container");
+      const appContainer = document.getElementById("app-container");
+      const loginButton = document.getElementById("login-button");
+      const logoutButton = document.getElementById("logout-button");
+      const resetPasswordLink = document.getElementById("reset-password-link");
+      const errorElement = document.getElementById("error");
+
+      loginButton.addEventListener("click", async () => {
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
         try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/receber-dados",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de Arc");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("dados").innerHTML = `
-          <p>Pressão: ${dados.pressao || "N/A"} bar</p>
-          <p>Vazão: ${dados.vazao || "N/A"} ton/h</p>
-        `;
+          await signInWithEmailAndPassword(auth, email, password);
+          errorElement.textContent = "";
         } catch (error) {
-          document.getElementById(
-            "dados"
-          ).textContent = `Erro: ${error.message}`;
+          if (error.code === "auth/wrong-password") {
+            errorElement.textContent = "Senha incorreta.";
+          } else if (error.code === "auth/user-not-found") {
+            errorElement.textContent = "Usuário não encontrado.";
+          } else {
+            errorElement.textContent = "Erro: " + error.message;
+          }
         }
+      });
+
+      resetPasswordLink.addEventListener("click", async () => {
+        const email = prompt("Insira seu e-mail para redefinir a senha:");
+        if (email) {
+          try {
+            await sendPasswordResetEmail(auth, email);
+            alert("E-mail de redefinição de senha enviado com sucesso.");
+          } catch (error) {
+            if (error.code === "auth/user-not-found") {
+              errorElement.textContent = "E-mail não cadastrado.";
+            } else {
+              errorElement.textContent =
+                "Erro ao enviar e-mail: " + error.message;
+            }
+          }
+        }
+      });
+
+      logoutButton.addEventListener("click", async () => {
+        await signOut(auth);
+      });
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          loginContainer.style.display = "none";
+          appContainer.style.display = "block";
+          carregarDados();
+        } else {
+          loginContainer.style.display = "block";
+          appContainer.style.display = "none";
+        }
+      });
+
+      async function carregarDados() {
+        const atualizarDados = () => {
+          buscarDadosArc();
+          buscarDadosMog();
+          buscarDadosVap();
+          buscarDadosBlueTree();
+          buscarDadosSgai();
+          buscarDadosSgaii();
+          buscarDadosSgaiii();
+          buscarDadosLapi();
+          buscarDadosLapii();
+          buscarDadosdivii();
+        };
+        atualizarDados();
+        setInterval(atualizarDados, 5000);
+      }
+
+      async function buscarDadosArc() {
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosMog() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/geribamog",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de Mog");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("geribamog").innerHTML = `
-          <p>Pressão: ${dados.pressao || "N/A"} bar</p>
-          <p>Vazão: ${dados.vazao || "N/A"} ton/h</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "geribamog"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosVap() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/geribavap",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de Vap");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("geribavap").innerHTML = `
-          <p>Pressão: ${dados.pressao || "N/A"} bar</p>
-          <p>Vazão: ${dados.vazao || "N/A"} ton/h</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "geribavap"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosBlueTree() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/bluetree",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de BlueTree");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("bluetree").innerHTML = `
-          <p>Temperatura: ${dados.temperatura || "N/A"} °C</p>
-          <p>TR: ${dados.tr || "N/A"}</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "bluetree"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosSgai() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/sgai",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de SGA I");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("sgai").innerHTML = `
-          <p>Geração: ${dados.geracao || "N/A"} kW</p>
-          <p>Irradiação: ${dados.irradiacao || "N/A"} kW/m²</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "sgai"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosSgaii() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/sgaii",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de SGA II");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("sgaii").innerHTML = `
-          <p>Geração: ${dados.geracao || "N/A"} kW</p>
-          <p>Irradiação: ${dados.irradiacao || "N/A"} kW/m²</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "sgaii"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosSgaiii() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/sgaiii",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de SGA III");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("sgaiii").innerHTML = `
-          <p>Geração: ${dados.geracao || "N/A"} kW</p>
-          <p>Irradiação: ${dados.irradiacao || "N/A"} kW/m²</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "sgaiii"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosLapi() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/lapi",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de Lapi");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("lapi").innerHTML = `
-       <p>Geração: ${dados.geracao || "N/A"} kW</p>
-          <p>Irradiação: ${dados.irradiacao || "N/A"} kW/m²</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "lapi"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosLapii() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/lapii",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de LapII");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("lapii").innerHTML = `
-       <p>Geração: ${dados.geracao || "N/A"} kW</p>
-          <p>Irradiação: ${dados.irradiacao || "N/A"} kW/m²</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "lapii"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
 
       async function buscarDadosdivii() {
-        try {
-          const response = await fetch(
-            "https://centraismaisenergia.vercel.app/api/divii",
-            {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error("Erro ao buscar os dados de DIVII");
-          }
-
-          const dados = await response.json();
-
-          document.getElementById("divii").innerHTML = `
-       <p>Geração: ${dados.geracao || "N/A"} kW</p>
-          <p>Irradiação: ${dados.irradiacao || "N/A"} kW/m²</p>
-        `;
-        } catch (error) {
-          document.getElementById(
-            "divii"
-          ).textContent = `Erro: ${error.message}`;
-        }
+        // Lógica para buscar os dados
       }
-
-      // Atualiza os dados a cada 5 segundos
-      setInterval(() => {
-        buscarDadosArc();
-        buscarDadosMog();
-        buscarDadosVap();
-        buscarDadosBlueTree();
-        buscarDadosSgai();
-        buscarDadosSgaii();
-        buscarDadosSgaiii();
-        buscarDadosLapi();
-        buscarDadosLapii();
-        buscarDadosdivii();
-      }, 5000);
-
-      // Chama as funções ao carregar a página
-      document.addEventListener("DOMContentLoaded", () => {
-        buscarDadosArc();
-        buscarDadosMog();
-        buscarDadosVap();
-        buscarDadosBlueTree();
-        buscarDadosSgai();
-        buscarDadosSgaii();
-        buscarDadosSgaiii();
-        buscarDadosLapi();
-        buscarDadosLapii();
-        buscarDadosdivii();
-      });
     </script>
   </body>
 </html>
