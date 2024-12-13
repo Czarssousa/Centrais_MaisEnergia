@@ -29,14 +29,13 @@ const errorElement = document.getElementById("error");
 
 const loginHandler = async () => {
   const email = document.getElementById("email").value;
-  const passwordInput = document.getElementById("password"); // Captura o elemento do campo de senha
+  const passwordInput = document.getElementById("password");
   const password = passwordInput.value;
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
     errorElement.textContent = "";
   } catch (error) {
-    // Limpa o campo de senha em caso de erro
     passwordInput.value = "";
 
     if (error.code === "auth/wrong-password") {
@@ -89,7 +88,46 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-const carregarDados = () => {
-  console.log("Carregando dados...");
-  // Aqui você pode adicionar a lógica para carregar dados específicos das centrais
+const carregarDados = async () => {
+  try {
+    await buscarDados("dados", "https://centraismaisenergia.vercel.app/api/receber-dados");
+    await buscarDados("geribamog", "https://centraismaisenergia.vercel.app/api/geribamog");
+    await buscarDados("geribavap", "https://centraismaisenergia.vercel.app/api/geribavap");
+    await buscarDados("bluetree", "https://centraismaisenergia.vercel.app/api/bluetree");
+    await buscarDados("sgai", "https://centraismaisenergia.vercel.app/api/sgai");
+    await buscarDados("sgaii", "https://centraismaisenergia.vercel.app/api/sgaii");
+    await buscarDados("sgaiii", "https://centraismaisenergia.vercel.app/api/sgaiii");
+    await buscarDados("lapi", "https://centraismaisenergia.vercel.app/api/lapi");
+    await buscarDados("lapii", "https://centraismaisenergia.vercel.app/api/lapii");
+    await buscarDados("divii", "https://centraismaisenergia.vercel.app/api/divii");
+  } catch (error) {
+    console.error("Erro ao carregar os dados:", error);
+  }
 };
+
+const buscarDados = async (elementId, apiUrl) => {
+  try {
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar os dados da API ${elementId}`);
+    }
+
+    const dados = await response.json();
+    const elemento = document.getElementById(elementId);
+    elemento.innerHTML = Object.entries(dados)
+      .map(([key, value]) => `<p>${key}: ${value || "N/A"}</p>`)
+      .join("");
+  } catch (error) {
+    const elemento = document.getElementById(elementId);
+    elemento.textContent = `Erro: ${error.message}`;
+  }
+};
+
+// Atualiza os dados automaticamente a cada 5 segundos
+setInterval(carregarDados, 5000);
