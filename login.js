@@ -29,15 +29,12 @@ const errorElement = document.getElementById("error");
 
 const loginHandler = async () => {
   const email = document.getElementById("email").value;
-  const passwordInput = document.getElementById("password");
-  const password = passwordInput.value;
+  const password = document.getElementById("password").value;
 
   try {
     await signInWithEmailAndPassword(auth, email, password);
     errorElement.textContent = "";
   } catch (error) {
-    passwordInput.value = "";
-
     if (error.code === "auth/wrong-password") {
       errorElement.textContent = "Senha incorreta.";
     } else if (error.code === "auth/user-not-found") {
@@ -87,25 +84,54 @@ onAuthStateChanged(auth, (user) => {
     appContainer.style.display = "none";
   }
 });
-
 const carregarDados = async () => {
   try {
-    await buscarDados("dados", "https://centraismaisenergia.vercel.app/api/receber-dados");
-    await buscarDados("geribamog", "https://centraismaisenergia.vercel.app/api/geribamog");
-    await buscarDados("geribavap", "https://centraismaisenergia.vercel.app/api/geribavap");
-    await buscarDados("bluetree", "https://centraismaisenergia.vercel.app/api/bluetree");
-    await buscarDados("sgai", "https://centraismaisenergia.vercel.app/api/sgai");
-    await buscarDados("sgaii", "https://centraismaisenergia.vercel.app/api/sgaii");
-    await buscarDados("sgaiii", "https://centraismaisenergia.vercel.app/api/sgaiii");
-    await buscarDados("lapi", "https://centraismaisenergia.vercel.app/api/lapi");
-    await buscarDados("lapii", "https://centraismaisenergia.vercel.app/api/lapii");
-    await buscarDados("divii", "https://centraismaisenergia.vercel.app/api/divii");
+    await buscarDados("dados", "https://centraismaisenergia.vercel.app/api/receber-dados", {
+      pressao: { label: "Pressão", unit: "bar" },
+      vazao: { label: "Vazão", unit: "ton/h" },
+    });
+    await buscarDados("geribamog", "https://centraismaisenergia.vercel.app/api/geribamog", {
+      pressao: { label: "Pressão", unit: "bar" },
+      vazao: { label: "Vazão", unit: "ton/h" },
+    });
+    await buscarDados("geribavap", "https://centraismaisenergia.vercel.app/api/geribavap", {
+      pressao: { label: "Pressão", unit: "bar" },
+      vazao: { label: "Vazão", unit: "ton/h" },
+    });
+    await buscarDados("bluetree", "https://centraismaisenergia.vercel.app/api/bluetree", {
+      temperatura: { label: "Temperatura", unit: "°C" },
+      tr: { label: "TR", unit: "" },
+    });
+    await buscarDados("sgai", "https://centraismaisenergia.vercel.app/api/sgai", {
+      geracao: { label: "Geração", unit: "kW" },
+      irradiacao: { label: "Irradiação", unit: "kW/m²" },
+    });
+    await buscarDados("sgaii", "https://centraismaisenergia.vercel.app/api/sgaii", {
+      geracao: { label: "Geração", unit: "kW" },
+      irradiacao: { label: "Irradiação", unit: "kW/m²" },
+    });
+    await buscarDados("sgaiii", "https://centraismaisenergia.vercel.app/api/sgaiii", {
+      geracao: { label: "Geração", unit: "kW" },
+      irradiacao: { label: "Irradiação", unit: "kW/m²" },
+    });
+    await buscarDados("lapi", "https://centraismaisenergia.vercel.app/api/lapi", {
+      geracao: { label: "Geração", unit: "kW" },
+      irradiacao: { label: "Irradiação", unit: "kW/m²" },
+    });
+    await buscarDados("lapii", "https://centraismaisenergia.vercel.app/api/lapii", {
+      geracao: { label: "Geração", unit: "kW" },
+      irradiacao: { label: "Irradiação", unit: "kW/m²" },
+    });
+    await buscarDados("divii", "https://centraismaisenergia.vercel.app/api/divii", {
+      geracao: { label: "Geração", unit: "kW" },
+      irradiacao: { label: "Irradiação", unit: "kW/m²" },
+    });
   } catch (error) {
     console.error("Erro ao carregar os dados:", error);
   }
 };
 
-const buscarDados = async (elementId, apiUrl) => {
+const buscarDados = async (elementId, apiUrl, units) => {
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -121,7 +147,11 @@ const buscarDados = async (elementId, apiUrl) => {
     const dados = await response.json();
     const elemento = document.getElementById(elementId);
     elemento.innerHTML = Object.entries(dados)
-      .map(([key, value]) => `<p>${key}: ${value || "N/A"}</p>`)
+      .map(([key, value]) => {
+        const label = units[key]?.label || key;
+        const unit = units[key]?.unit || "";
+        return `<p>${label}: ${value || "N/A"} ${unit}</p>`;
+      })
       .join("");
   } catch (error) {
     const elemento = document.getElementById(elementId);
