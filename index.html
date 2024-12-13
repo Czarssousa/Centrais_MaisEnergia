@@ -13,15 +13,32 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
         background-color: #ffffff;
       }
 
+      input {
+        color: gray;
+        border-color: gray;
+      }
+      input:focus {
+        border-color: gray;
+      }
+
+      input:active {
+        color: gray;
+        border-color: rgb(0, 139, 182);
+        outline: none;
+      }
+
       .login-container {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
         background: white;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 5px rgba(119, 119, 119, 0.2);
         width: 300px;
       }
 
@@ -42,7 +59,7 @@
       .login-container button {
         width: 100%;
         padding: 10px;
-        background: gray;
+        background: rgb(49, 171, 151);
         color: white;
         border: none;
         border-radius: 4px;
@@ -50,7 +67,7 @@
       }
 
       .login-container button:hover {
-        background: darkgray;
+        background: rgb(95, 233, 210);
       }
 
       .login-container a {
@@ -58,7 +75,7 @@
         text-align: center;
         margin-top: 10px;
         font-size: 14px;
-        color: blue;
+        color: rgb(111, 111, 248);
         text-decoration: none;
       }
 
@@ -73,13 +90,14 @@
       }
 
       .container {
+        margin-top: 50px;
         display: flex;
-        gap: 10px;
         flex-wrap: wrap;
-        padding: 20px;
-        justify-content: start;
+        gap: 20px;
+        justify-content: center;
         align-items: start;
         justify-items: start;
+        padding: 20px;
       }
 
       .central {
@@ -102,243 +120,110 @@
       }
 
       #logout-button {
-        margin-top: 20px;
+        position: absolute;
+        width: 80px;
         padding: 10px;
-        background: rgb(82, 82, 82);
+        background: hsl(0, 0%, 32%);
         color: white;
         border: none;
         border-radius: 4px;
         cursor: pointer;
         margin-left: 10px;
+        bottom: 20px;
       }
 
       #logout-button:hover {
-        background: rgb(163, 163, 163);
+        background: rgb(216, 216, 216);
+      }
+
+      #containerlogin {
+        position: absolute;
+        top: 120px;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        margin-top: 150px;
+        width: 500px;
+        height: 500px;
+      }
+      #email,
+      #password {
+        width: 90%;
+      }
+
+      nav {
+        position: absolute;
+        height: 50px;
+        display: flex;
+        top: 0;
+        font-size: 20px;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(49, 171, 151);
+        color: white;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
     </style>
   </head>
+  <script type="module" src="./login.js"></script>
   <body>
-    <div class="login-container" id="login-container">
-      <h1>Login</h1>
-      <input type="email" id="email" placeholder="E-mail" />
-      <input type="password" id="password" placeholder="Senha" />
-      <button id="login-button">Entrar</button>
-      <p id="error"></p>
-      <a href="#" id="reset-password-link">Esqueceu sua senha?</a>
+    <nav>Centrais Mais Energia</nav>
+    <div id="containerlogin">
+      <div class="login-container" id="login-container">
+        <h1>Login</h1>
+        <input type="email" id="email" placeholder="E-mail" />
+        <input type="password" id="password" placeholder="Senha" />
+        <button id="login-button">Entrar</button>
+        <p id="error"></p>
+        <a href="#" id="reset-password-link">Esqueceu sua senha?</a>
+      </div>
     </div>
-
     <div id="app-container" style="display: none">
       <div class="container">
         <div class="central">
-          <h1>
-            Geriba Energy Arc
-            <hr />
-          </h1>
+          <h1>Geriba Energy Arc</h1>
           <div id="dados">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            Geriba Energy Mog
-            <hr />
-          </h1>
+          <h1>Geriba Energy Mog</h1>
           <div id="geribamog">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            Geriba Energy Vap Fpap
-            <hr />
-          </h1>
+          <h1>Geriba Energy Vap Fpap</h1>
           <div id="geribavap">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            BlueTree
-            <hr />
-          </h1>
+          <h1>BlueTree</h1>
           <div id="bluetree">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            SGA I
-            <hr />
-          </h1>
+          <h1>SGA I</h1>
           <div id="sgai">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            SGA II
-            <hr />
-          </h1>
+          <h1>SGA II</h1>
           <div id="sgaii">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            SGA III
-            <hr />
-          </h1>
+          <h1>SGA III</h1>
           <div id="sgaiii">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            LAP I
-            <hr />
-          </h1>
+          <h1>LAP I</h1>
           <div id="lapi">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            LAP II
-            <hr />
-          </h1>
+          <h1>LAP II</h1>
           <div id="lapii">Carregando dados...</div>
         </div>
         <div class="central">
-          <h1>
-            DIV II
-            <hr />
-          </h1>
+          <h1>DIV II</h1>
           <div id="divii">Carregando dados...</div>
         </div>
       </div>
       <button id="logout-button">Sair</button>
     </div>
-
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-      import {
-        getAuth,
-        signInWithEmailAndPassword,
-        onAuthStateChanged,
-        sendPasswordResetEmail,
-        signOut,
-      } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyAKXrxWXEr-8Kg3OOyj4NnFK_e4I5tpeRw",
-        authDomain: "centraismaisenergia.firebaseapp.com",
-        projectId: "centraismaisenergia",
-        storageBucket: "centraismaisenergia.appspot.com",
-        messagingSenderId: "39890355306",
-        appId: "1:39890355306:web:3edcac8637e77e062c7613",
-        measurementId: "G-0F2T0027X4",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-
-      const loginContainer = document.getElementById("login-container");
-      const appContainer = document.getElementById("app-container");
-      const loginButton = document.getElementById("login-button");
-      const logoutButton = document.getElementById("logout-button");
-      const resetPasswordLink = document.getElementById("reset-password-link");
-      const errorElement = document.getElementById("error");
-
-      loginButton.addEventListener("click", async () => {
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-
-        try {
-          await signInWithEmailAndPassword(auth, email, password);
-          errorElement.textContent = "";
-        } catch (error) {
-          if (error.code === "auth/wrong-password") {
-            errorElement.textContent = "Senha incorreta.";
-          } else if (error.code === "auth/user-not-found") {
-            errorElement.textContent = "Usuário não encontrado.";
-          } else {
-            errorElement.textContent = "Erro: " + error.message;
-          }
-        }
-      });
-
-      resetPasswordLink.addEventListener("click", async () => {
-        const email = prompt("Insira seu e-mail para redefinir a senha:");
-        if (email) {
-          try {
-            await sendPasswordResetEmail(auth, email);
-            alert("E-mail de redefinição de senha enviado com sucesso.");
-          } catch (error) {
-            if (error.code === "auth/user-not-found") {
-              errorElement.textContent = "E-mail não cadastrado.";
-            } else {
-              errorElement.textContent =
-                "Erro ao enviar e-mail: " + error.message;
-            }
-          }
-        }
-      });
-
-      logoutButton.addEventListener("click", async () => {
-        await signOut(auth);
-      });
-
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          loginContainer.style.display = "none";
-          appContainer.style.display = "block";
-          carregarDados();
-        } else {
-          loginContainer.style.display = "block";
-          appContainer.style.display = "none";
-        }
-      });
-
-      async function carregarDados() {
-        const atualizarDados = () => {
-          buscarDadosArc();
-          buscarDadosMog();
-          buscarDadosVap();
-          buscarDadosBlueTree();
-          buscarDadosSgai();
-          buscarDadosSgaii();
-          buscarDadosSgaiii();
-          buscarDadosLapi();
-          buscarDadosLapii();
-          buscarDadosdivii();
-        };
-        atualizarDados();
-        setInterval(atualizarDados, 5000);
-      }
-
-      async function buscarDadosArc() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosMog() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosVap() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosBlueTree() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosSgai() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosSgaii() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosSgaiii() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosLapi() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosLapii() {
-        // Lógica para buscar os dados
-      }
-
-      async function buscarDadosdivii() {
-        // Lógica para buscar os dados
-      }
-    </script>
   </body>
 </html>
