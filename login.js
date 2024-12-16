@@ -150,7 +150,10 @@ const buscarDados = async (elementId, apiUrl, units) => {
       .map(([key, value]) => {
         const label = units[key]?.label || key;
         const unit = units[key]?.unit || "";
-        return `<p>${label}: ${value || "N/A"} ${unit}</p>`;
+        // Formata o valor com duas casas decimais, se for um número
+        const formattedValue =
+          typeof value === "number" ? value.toFixed(2) : value || "N/A";
+        return `<p>${label}: ${formattedValue} ${unit}</p>`;
       })
       .join("");
   } catch (error) {
@@ -158,6 +161,7 @@ const buscarDados = async (elementId, apiUrl, units) => {
     elemento.textContent = `Erro: ${error.message}`;
   }
 };
+
 
 // Atualiza os dados automaticamente a cada 5 segundos
 setInterval(carregarDados, 5000);
