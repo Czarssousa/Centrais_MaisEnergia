@@ -103,28 +103,28 @@ const carregarDados = async () => {
       tr: { label: "TR", unit: "" },
     });
     await buscarDados("sgai", "https://centraismaisenergia.vercel.app/api/sgai", {
-      geracao: { label: "Geração", unit: "kW" },
-      irradiacao: { label: "Irradiação", unit: "W/m²" },
+      geracao: { label: "Potência", unit: "kW" },
+      irradiacao: { label: "IR", unit: "W/m²" },
     });
     await buscarDados("sgaii", "https://centraismaisenergia.vercel.app/api/sgaii", {
-      geracao: { label: "Geração", unit: "kW" },
-      irradiacao: { label: "Irradiação", unit: "W/m²" },
+      geracao: { label: "Potência", unit: "kW" },
+      irradiacao: { label: "IR", unit: "W/m²" },
     });
     await buscarDados("sgaiii", "https://centraismaisenergia.vercel.app/api/sgaiii", {
-      geracao: { label: "Geração", unit: "kW" },
-      irradiacao: { label: "Irradiação", unit: "W/m²" },
+      geracao: { label: "Potência", unit: "kW" },
+      irradiacao: { label: "IR", unit: "W/m²" },
     });
     await buscarDados("lapi", "https://centraismaisenergia.vercel.app/api/lapi", {
-      geracao: { label: "Geração", unit: "kW" },
-      irradiacao: { label: "Irradiação", unit: "W/m²" },
+      geracao: { label: "Potência", unit: "kW" },
+      irradiacao: { label: "IR:", unit: "W/m²" },
     });
     await buscarDados("lapii", "https://centraismaisenergia.vercel.app/api/lapii", {
-      geracao: { label: "Geração", unit: "kW" },
-      irradiacao: { label: "Irradiação", unit: "W/m²" },
+      geracao: { label: "Potência", unit: "kW" },
+      irradiacao: { label: "IR", unit: "W/m²" },
     });
     await buscarDados("divii", "https://centraismaisenergia.vercel.app/api/divii", {
-      geracao: { label: "Geração", unit: "kW" },
-      irradiacao: { label: "Irradiação", unit: "W/m²" },
+      geracao: { label: "Potência", unit: "kW" },
+      irradiacao: { label: "IR", unit: "W/m²" },
     });
   } catch (error) {
     console.error("Erro ao carregar os dados:", error);
