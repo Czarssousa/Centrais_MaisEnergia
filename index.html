@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Centrais Mais Energia</title>
@@ -121,7 +126,7 @@
         font-size: 16px;
         width: 100%;
         color: gray;
-        margin:0;
+        margin: 0;
       }
 
       #logout-button {
@@ -183,9 +188,29 @@
         right: 10px;
       }
 
-      hr {
-        color: rgb(250, 250, 250, 0.8);
-        border-color: rgb(250, 250, 250, 0.8);
+      .separador {
+        background-color: rgba(224, 224, 224, 0.8);
+        width: 100%;
+        height: 2px;
+      }
+      .cabecalho {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        height: 30px;
+        width: 100%;
+      }
+
+      .titulo {
+        display: flex;
+        justify-content: center;
+        width: 80%;
+      }
+      .icone {
+        display: flex;
+        justify-content: center;
+        width: 20%;
       }
     </style>
   </head>
@@ -208,75 +233,115 @@
     <div id="app-container" style="display: none">
       <div class="container">
         <div class="central">
-          <h1>
-            Nutrimental
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-industry"></i></div>
+            <div class="titulo">
+              <h1>Nutrimental</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="dados">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            Mars
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-industry"></i></div>
+            <div class="titulo">
+              <h1>Mars</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="geribamog">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            Fernandez
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-industry"></i></div>
+            <div class="titulo">
+              <h1>Fernandez</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="geribavap">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            BlueTree
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-snowflake"></i></div>
+            <div class="titulo">
+              <h1>BlueTree</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="bluetree">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            SGA I
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-solar-panel"></i></div>
+            <div class="titulo">
+              <h1>SGA I</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="sgai">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            SGA II
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-solar-panel"></i></div>
+            <div class="titulo">
+              <h1>SGA II</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="sgaii">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            SGA III
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-solar-panel"></i></div>
+            <div class="titulo">
+              <h1>SGA III</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="sgaiii">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            LAP I
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-solar-panel"></i></div>
+            <div class="titulo">
+              <h1>LAP I</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="lapi">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            LAP II
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-solar-panel"></i></div>
+            <div class="titulo">
+              <h1>LAP II</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="lapii">Carregando dados...</div>
         </div>
+
         <div class="central">
-          <h1>
-            DIV II
-            <hr />
-          </h1>
+          <div class="cabecalho">
+            <div class="icone"><i class="fa-solid fa-solar-panel"></i></div>
+            <div class="titulo">
+              <h1>DIV II</h1>
+            </div>
+          </div>
+          <div class="separador"></div>
           <div id="divii">Carregando dados...</div>
         </div>
+
         <footer>
           <button id="logout-button">Sair</button>
         </footer>
